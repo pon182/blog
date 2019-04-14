@@ -1,0 +1,56 @@
+<div class="body">
+
+    <div class= "header">
+        <div class="header-title">
+            <%= link_to "blog", root_path, method: :get %>
+               
+            
+        </div>
+         <i class="far fa-edit"></i>
+        <div class="button">
+        <% if user_signed_in? %>
+        <div class="user_nav grid-6">
+          <span><%= current_user.nickname %>
+            <ul class="user__info">
+              <li>
+                <a href="/users/<%= current_user.id %>">マイページ</a>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+             </li>
+            </ul>
+          </span>
+          <a class="post" href="/tweets/new">投稿する</a>
+        </div>
+      <% else %>
+        <div class="grid-6">
+            <div class="login">
+                <%= link_to "ログイン", new_user_session_path, class: 'post' %>
+             </div>
+          <div class="acount-new">
+                <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+          </div>
+        </div>
+      <% end %>
+
+    
+            
+        </div>
+    </div>
+    <div class="main">
+        <div class="main-left">
+            <h2>title</h2>
+            <div class="blog-title">
+                <ul>
+                    <li>
+                        ・日付<br>
+                        　・title
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="tweet">
+                testtesteststestestsetstsetsssss
+            </div>
+        </div>
+    </div>
+</div>
