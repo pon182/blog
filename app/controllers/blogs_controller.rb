@@ -9,7 +9,7 @@ class BlogsController < ApplicationController
     end
 
     def create
-        Comment.create(title: comment_params[:title],image: comment_params[:image], text: comment_params[:text], user_id: current_user.id)
+        Comment.create(title: comment_params[:title], text: comment_params[:text], user_id: current_user.id)
         redirect_to '/'
     end
 
@@ -30,15 +30,16 @@ class BlogsController < ApplicationController
     end
 
     def show
-
         @comments = Comment.all
+        
+
     end
 
     
     
     private
     def comment_params
-        params.permit(:title,:image,:text)
+        params.permit(:title,:text)
     end
 
     def move_to_index

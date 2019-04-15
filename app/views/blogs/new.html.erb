@@ -1,28 +1,35 @@
-<div class="header">
-    <h3>
-        投稿する
-    </h3>
-</div>
-<div class="body">
-        <div class="contents row">
-            <div class="container">
-            <%= form_tag('/blogs', method: :post) do %>
-                <div class="content-image">
-                <input placeholder="Image URL" type="text" name="image" autofocus="true">
-                </div>
-                <div class="content-title">
-                <textarea  cols="30" name="title" placeholder="title" rows="30" rows="10"></textarea>
-                </div>
-                <div class="content-text">
-                <textarea cols="30" name="text" placeholder="text" rows="30" rows="10"></textarea>
-                </div>
-                <div class="sent">
-                <input type="submit" value="SENT">
-                </div>
-            <% end %>
-            </div>
+<div class=""body">
+    <div class="header">
+
+        <div class="header-title">
+            <%= link_to "blog", root_path, method: :get %>
         </div>
 
+        <div class="side-title">
+            <h3>
+                Post
+            </h3>
+        </div>
+
+    </div>
+    <div class="main">
+            <div class="contents_row">
+                <div class="container">
 
 
+                
+                <%= form_with(model: @comment,url: blogs_path ,method: :post ,local: true) do |form|%>
+                    <div class="content-title">
+                        <textarea  cols="30" name="title" placeholder="title" id="title"></textarea>
+                    </div>
+                    <div class="content-text">
+                        <textarea  name="text" placeholder="text" rows="25" cols="30" wrap="hard"></textarea>
+                    </div>
+                    <div class="sent">
+                        <input type="submit" value="SENT" rows="5">
+                    </div>
+                <% end %>
+                </div>
+            </div>
+    </div>
 </div>

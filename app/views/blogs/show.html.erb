@@ -47,10 +47,16 @@
             <h2>title</h2>
             <div class="blog-title">
                 <ul>
-                    <li>
-                        ・日付<br>
-                        　・title
-                    </li>
+                    <% @comments.each_with_index do |comment, i|%>
+                        <% if user_signed_in? && current_user.id == comment.user_id %>
+                            <li>
+                                <div class=list-title>
+                                <%= link_to "#{comment[:title] }", "##{i}", method: :get %>
+
+                                </div>
+                            </li>
+                        <% end %>
+                    <% end %>
                 </ul>
             </div>
         </div>
@@ -58,26 +64,31 @@
 
         <div class="main-right">
             <div class="tweet">
-                <% @comments.each do |comment| %>
+                <% @comments.each_with_index do |comment, i | %>
                      <% if user_signed_in? && current_user.id == comment.user_id %>
+                    <div class="comment-all" id=<%= i %>>
                         <div class="comment">
-                    <ul id="mainmenu">
-                        <li><i class="fas fa-list"></i> </a>
-                            <ul class="submenu">
-                                    <li><%= link_to 'edit', "/blogs/#{comment.id}/edit", method: :get %></li>
-                                    <li> <%= link_to 'delete', "/blogs/#{comment.id}", method: :delete %></li>
-                                
+                            <ul id="mainmenu">
+                                <li><i class="fas fa-list"></i> </a>
+                                    <ul class="submenu">
+                                            <li><%= link_to 'edit', "/blogs/#{comment.id}/edit", method: :get %></li>
+                                            <li> <%= link_to 'delete', "/blogs/#{comment.id}", method: :delete %></li>
+                                        
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
-                        <div class="comment-title">
-                        <%= comment[:title] %></br></br>
+                            <div class="comment-title">
+                                <%= comment[:title] %></br>
+                            </div>
+                            <div class="date">
+                                <%= comment[:created_at].strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+                            </div>
+                            <div class="comment-text">
+                                <%= comment[:text] %>
+                                </div>
                         </div>
-                        <div class="comment-text">
-                        <%= comment[:text] %>
-                        </div>
-                        <% end %>
                     </div>
+                    <% end %>
                 <% end %>
                 
                 
