@@ -1,8 +1,9 @@
 class BlogsController < ApplicationController
     before_action :move_to_index, except: [:index , :show]
+    before_action :comment_all, only: [:index, :show]
+    before_action :comment_find_user, only: [:edit, :update, :destroy]
 
     def index
-        @comments = Comment.all
     end
 
     def new
@@ -14,28 +15,22 @@ class BlogsController < ApplicationController
     end
 
     def edit
-        @comment = Comment.find(params[:id])
     end
 
     def update
-        comment = Comment.find(params[:id])
-        comment.update(comment_params) if comment.user_id == current_user.id
+        @comment.update(comment_params) if @comment.user_id == current_user.id
         redirect_to root_path
     end
 
     def destroy
-        comment = Comment.find(params[:id])
-        comment.destroy if comment.user_id == current_user.id
+        @comment.destroy if @comment.user_id == current_user.id
         redirect_to '/'
     end
 
     def show
-        @comments = Comment.all
-        
-
     end
 
-    
+
     
     private
     def comment_params
@@ -44,6 +39,14 @@ class BlogsController < ApplicationController
 
     def move_to_index
         redirect_to action: :index unless user_signed_in?
-      end
+    end
+
+    def comment_all
+        @comments = Comment.all
+    end
+
+    def comment_find_user
+        @comment = Comment.find(params[:id])
+    end
 
 end
