@@ -6,35 +6,42 @@
                
             
         </div>
-         <i class="far fa-edit"></i>
+        
+        
+     
+        
         <div class="button">
         <% if user_signed_in? %>
+            <a class="far fa-edit" href="/blogs/new"></a>
         <div class="user_nav grid-6">
-          <span><%= current_user.nickname %>
+          <span>
             <ul class="user__info">
               <li>
-                <a href="/users/<%= current_user.id %>">マイページ</a>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <div class="login">
+                <a href="/blogs/<%= current_user.id %>">マイページ</a>
+            </div>
+             <div class="login">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </div>
              </li>
             </ul>
           </span>
-          <a class="post" href="/tweets/new">投稿する</a>
         </div>
       <% else %>
         <div class="grid-6">
             <div class="login">
                 <%= link_to "ログイン", new_user_session_path, class: 'post' %>
-             </div>
-          <div class="acount-new">
+            </div>
+            <div class="acount-new">
                 <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
-          </div>
+            </div>
         </div>
-      <% end %>
-
-    
-            
+      <% end %>        
         </div>
     </div>
+
+
+
     <div class="main">
         <div class="main-left">
             <h2>title</h2>
@@ -47,9 +54,33 @@
                 </ul>
             </div>
         </div>
+
+
         <div class="main-right">
             <div class="tweet">
-                testtesteststestestsetstsetsssss
+                <% @comments.each do |comment| %>
+                    <div class="comment">
+                        <% if user_signed_in? && current_user.id == comment.user_id %>
+                    <ul id="mainmenu">
+                        <li><i class="fas fa-list"></i> </a>
+                            <ul class="submenu">
+                                    <li><%= link_to 'edit', "/blogs/#{comment.id}/edit", method: :get %></li>
+                                    <li> <%= link_to 'delete', "/blogs/#{comment.id}", method: :delete %></li>
+                                <% end %>
+                            </ul>
+                        </li>
+                    </ul>
+                   
+                        <div class="comment-title">
+                        <%= comment[:title] %></br></br>
+                        </div>
+                        <div class="comment-text">
+                        <%= comment[:text] %>
+                        </div>
+                    </div>
+                <% end %>
+                
+                
             </div>
         </div>
     </div>

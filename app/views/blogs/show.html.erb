@@ -1,0 +1,87 @@
+<div class="body">
+
+    <div class= "header">
+        <div class="header-title">
+            <%= link_to "blog", root_path, method: :get %>
+               
+            
+        </div>
+        
+        
+     
+        
+        <div class="button">
+        <% if user_signed_in? %>
+            <a class="far fa-edit" href="/blogs/new"></a>
+        <div class="user_nav grid-6">
+          <span>
+            <ul class="user__info">
+              <li>
+            <div class="login">
+                <a href="/">HOME</a>
+            </div>
+             <div class="login">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </div>
+             </li>
+            </ul>
+          </span>
+        </div>
+      <% else %>
+        <div class="grid-6">
+            <div class="login">
+                <%= link_to "ログイン", new_user_session_path, class: 'post' %>
+            </div>
+            <div class="acount-new">
+                <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+            </div>
+        </div>
+      <% end %>        
+        </div>
+    </div>
+
+
+
+    <div class="main">
+        <div class="main-left">
+            <h2>title</h2>
+            <div class="blog-title">
+                <ul>
+                    <li>
+                        ・日付<br>
+                        　・title
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="main-right">
+            <div class="tweet">
+                <% @comments.each do |comment| %>
+                     <% if user_signed_in? && current_user.id == comment.user_id %>
+                        <div class="comment">
+                    <ul id="mainmenu">
+                        <li><i class="fas fa-list"></i> </a>
+                            <ul class="submenu">
+                                    <li><%= link_to 'edit', "/blogs/#{comment.id}/edit", method: :get %></li>
+                                    <li> <%= link_to 'delete', "/blogs/#{comment.id}", method: :delete %></li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                        <div class="comment-title">
+                        <%= comment[:title] %></br></br>
+                        </div>
+                        <div class="comment-text">
+                        <%= comment[:text] %>
+                        </div>
+                        <% end %>
+                    </div>
+                <% end %>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>

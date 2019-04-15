@@ -10,6 +10,8 @@
    
 }
 
+
+
 .header-title{
     color: rgb(75, 245, 194);
     height: 15px;
@@ -17,8 +19,9 @@
     float: left;
     position: relative;
     line-height: 15vh;
-    text-shadow: 5px 5px 1px #2d6269;
+    text-shadow: 5px 5px 1px #2f646b;
     padding-left: 20px;
+    border-style: none;
 }
 
 .acount-new{
@@ -42,6 +45,14 @@
     box-shadow: 5px 10px 15px;
     margin-top: 10px;   
 }
+
+.icon::before {
+    display: inline-block;
+    margin-right: .5em;
+    font-family: fontawesome;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
 .far{
     float: right;
@@ -79,4 +90,81 @@ h2{
 .blog-title{
     font-size: 15px;
     color:rgb(0, 140, 255);
+}
+
+.comment{
+    min-height: 200px;
+    width: 80vw;
+    padding: 0.5em 1em;
+    margin: 2em 30px;
+    color: #00BCD4;
+    background: #e4fcff;
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.32);
+}
+
+
+
+.comment-title{
+    font-size:30px;
+}
+
+.comment-text{
+    min-height: 200px;
+    width: 76vw;
+    padding: 0.5em 1em;
+    margin: 10px 30px;
+    color: #00BCD4;
+    background: #e4fcff;
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.32);
+}
+
+#mainmenu li {
+    list-style-type: none;
+}
+#mainmenu > li {
+    position: relative;
+    float: right;
+    margin: 1px; padding: 5px;
+    background-color: #e4fcff;
+    z-index: 1;
+}
+
+*:first-child+html .submenu {
+    background-color: #ccf;
+}
+.submenu {
+    display: none;
+    position: absolute;
+    left: 0;
+    margin: 0; padding: 5px;
+    background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTM5jWRgMAAAAVdEVYdENyZWF0aW9uIFRpbWUAMDkuMS4yMnZ25NMAAAAYSURBVBiVYzxz5v8ZBiIAEzGKRhVSTyEAdeYDdzZ7+wMAAAAASUVORK5CYII=) repeat left top;
+}
+#mainmenu > li:hover {
+    background-color: #ddf;
+    z-index: 2;
+}
+#mainmenu > li:hover .submenu {
+    display: block;
+    width: 100px;
+}
+li a,
+li a:link,
+li a:visited {
+    display: block;
+    margin: 0; padding: 5px 10px;
+    color: #339;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: #933;
+    background-color: #fcc;
+}
+
+.submenu li a:visited {
+    padding:px;
+    width: 80%;
+    vertical-align: bottom;
 }
