@@ -31,10 +31,10 @@ class BlogsController < ApplicationController
     end
 
 
-    
+
     private
     def comment_params
-        params.permit(:title,:text)
+        params.require(comment).permit(:title,:text)
     end
 
     def move_to_index
